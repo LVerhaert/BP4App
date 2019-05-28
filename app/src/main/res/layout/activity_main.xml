@@ -6,19 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".InteresseActivity">
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="395dp"
-        android:layout_height="340dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <Button
+        android:id="@+id/btnIntr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        android:text="Interesses"/>
+
+    <Button
+        android:id="@+id/btnVrw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnIntr"
+        android:text="Vrijwilligers"/>
+
+    <Button
+        android:id="@+id/btnBej"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnVrw"
+        android:text="Bejaarden"/>
+
+    <Button
+        android:id="@+id/btnPersIntr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnBej"
+        android:text="Interesses per persoon"/>
 
     <TextView
         android:id="@+id/textView"
@@ -28,8 +42,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Laden..."
+        app:layout_constraintTop_toBottomOf="@+id/btnPersIntr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

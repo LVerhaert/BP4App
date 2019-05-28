@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        fillInteresses(response, verzamelingen);
+                        findInteresses(response, verzamelingen);
+                        textView.setText("Interesses geladen. Personen laden...");
                         fillPersonen(verzamelingen, textView);
                     }
                 }, new Response.ErrorListener() {
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void fillInteresses(String response, Verzamelingen verzamelingen) {
+    private void findInteresses(String response, Verzamelingen verzamelingen) {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response)));
             NodeList interesse = doc.getElementsByTagName("bpInteresses");
@@ -71,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 Node n = alInteresses.item(i);
                 Node onderwerp = n.getChildNodes().item(0);
                 String strOnderwerp = onderwerp.getTextContent();
-                Interesse intr = new Interesse(strOnderwerp);
-                interesses.add(intr);
+                interesses.add(new Interesse(strOnderwerp));
             }
             verzamelingen.setInteresses(interesses);
         } catch (Exception e) {
@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        fillPersonen(response, verzamelingen);
+                        findPersonen(response, verzamelingen);
+                        textView.setText("Personen geladen. PersIntr laden...");
                         fillPersonenInteresses(verzamelingen, textView);
                     }
                 }, new Response.ErrorListener() {
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void fillPersonen(String response, Verzamelingen verzamelingen) {
+    private void findPersonen(String response, Verzamelingen verzamelingen) {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(response)));
             NodeList persoon = doc.getElementsByTagName("bpPersoons");
@@ -108,18 +109,20 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Bejaarde> bejaarden = new ArrayList<>();
             for (int i = 0; i < alPersonen.getLength(); i++) {
                 Node n = alPersonen.item(i);
+
                 Node naam = n.getChildNodes().item(1);
                 String strNaam = naam.getTextContent();
+
                 Node soort = n.getChildNodes().item(2);
                 String strSoort = soort.getTextContent();
+
                 Node koffieOfThee = n.getChildNodes().item(0);
                 boolean boolKoffie = (koffieOfThee.getTextContent().equals("koffie"));
+
                 if (strSoort.equals("vrijwilliger")) {
-                    Vrijwilliger vrw = new Vrijwilliger(strNaam, boolKoffie);
-                    vrijwilligers.add(vrw);
+                    vrijwilligers.add(new Vrijwilliger(strNaam, boolKoffie));
                 } else  if (strSoort.equals("bejaarde")) {
-                    Bejaarde bej = new Bejaarde(strNaam, boolKoffie);
-                    bejaarden.add(bej);
+                    bejaarden.add(new Bejaarde(strNaam, boolKoffie));
                 } else {
                     System.out.println(strNaam + " is geen vrijwilliger of bejaarde..");
                 }
@@ -139,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         fillPersonenInteresses(response, verzamelingen);
+                        textView.setText("Laden voltooid.");
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -157,13 +161,14 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < alPersoonInteresses.getLength(); i++) {
                 Node n = alPersoonInteresses.item(i);
                 Node persoon = n.getChildNodes().item(2);
+
                 Node naam = persoon.getChildNodes().item(1);
                 String strNaam = naam.getTextContent();
+
                 Node interesse = n.getChildNodes().item(1);
                 String strInteresse = interesse.getTextContent();
-                Interesse intr = new Interesse(strInteresse);
-                System.out.println("Persoon-interesse: " + strNaam + ", " + strInteresse);
-                verzamelingen.getPersoon(strNaam).addInteresse(intr);
+
+                verzamelingen.getPersoon(strNaam).addInteresse(new Interesse(strInteresse));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
