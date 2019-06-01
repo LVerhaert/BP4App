@@ -1,7 +1,10 @@
-package com.lizav.bp4app;
+package com.lizav.bp4app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -10,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.lizav.bp4app.R;
 import com.lizav.bp4app.model.Bejaarde;
 import com.lizav.bp4app.model.Interesse;
 import com.lizav.bp4app.model.Verzamelingen;
@@ -40,10 +44,33 @@ public class MainActivity extends AppCompatActivity {
 
         fillModel(verzamelingen, textView);
 
+        final Button btnIntr = findViewById(R.id.btnIntr);
+        btnIntr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(btnIntr.getContext(), InteresseActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("intr", verzamelingen.getInteresses());
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        final Button btnPersIntr = findViewById(R.id.btnPersIntr);
+        btnPersIntr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(btnPersIntr.getContext(), BejaardeInteresseActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pers", verzamelingen.getBejaarden());
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
     }
 
     private void fillModel(final Verzamelingen verzamelingen, final TextView textView) {
-        RequestQueue queue = Volley.newRequestQueue(this);
+        final RequestQueue queue = Volley.newRequestQueue(this);
         String urlInteresse = URL + "interesse";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlInteresse,
                 new Response.Listener<String>() {
@@ -51,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         findInteresses(response, verzamelingen);
                         textView.setText("Interesses geladen. Personen laden...");
-                        fillPersonen(verzamelingen, textView);
+                        fillPersonen(verzamelingen, textView, queue);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -80,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fillPersonen(final Verzamelingen verzamelingen, final TextView textView) {
-        RequestQueue queue = Volley.newRequestQueue(this);
+    private void fillPersonen(final Verzamelingen verzamelingen, final TextView textView, final RequestQueue queue) {
         String urlPersoon = URL + "persoon";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlPersoon,
                 new Response.Listener<String>() {
@@ -89,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         findPersonen(response, verzamelingen);
                         textView.setText("Personen geladen. PersIntr laden...");
-                        fillPersonenInteresses(verzamelingen, textView);
+                        fillPersonenInteresses(verzamelingen, textView, queue);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -134,8 +160,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fillPersonenInteresses(final Verzamelingen verzamelingen, final TextView textView) {
-        RequestQueue queue = Volley.newRequestQueue(this);
+    private void fillPersonenInteresses(final Verzamelingen verzamelingen, final TextView textView, final RequestQueue queue) {
         String urlPersoonInteresse = URL + "persooninteresse";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlPersoonInteresse,
                 new Response.Listener<String>() {

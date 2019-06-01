@@ -1,6 +1,8 @@
 package com.lizav.bp4app.model;
 
-public class Interesse {
+import java.io.Serializable;
+
+public class Interesse implements Serializable {
     String onderwerp;
 
     public Interesse (String onderwerp) {

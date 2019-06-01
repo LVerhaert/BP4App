@@ -1,8 +1,9 @@
 package com.lizav.bp4app.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Persoon {
+public abstract class Persoon implements Serializable {
     protected String naam;
     protected boolean koffie;
     protected ArrayList<Interesse> interesses;

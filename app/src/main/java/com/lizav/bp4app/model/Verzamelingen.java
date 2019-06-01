@@ -1,5 +1,6 @@
 package com.lizav.bp4app.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Verzamelingen {
@@ -38,18 +39,21 @@ public class Verzamelingen {
     }
 
     public Persoon getPersoon(String naam) {
-        for (Vrijwilliger vrijwilliger : vrijwilligers) {
-//            System.out.println("Checking " + naam + " with vrijwilliger " + vrijwilliger.getNaam());
+
+        for (Object vrw : vrijwilligers) {
+            Vrijwilliger vrijwilliger = (Vrijwilliger) vrw;
             if (vrijwilliger.getNaam().equals(naam)) {
                 return vrijwilliger;
             }
         }
-        for (Bejaarde bejaarde : bejaarden) {
-//            System.out.println("Checking " + naam + " with bejaarde " + bejaarde.getNaam());
+
+        for (Object bej : bejaarden) {
+            Bejaarde bejaarde = (Bejaarde) bej;
             if (bejaarde.getNaam().equals(naam)) {
                 return bejaarde;
             }
         }
         return null;
     }
+
 }

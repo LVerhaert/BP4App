@@ -1,4 +1,4 @@
-package com.lizav.bp4app;
+package com.lizav.bp4app.activity;
 
 public class VrijwilligerInteresseActivity {
 }
