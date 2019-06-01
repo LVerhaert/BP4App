@@ -11,13 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".activity.BejaardeInteresseActivity" />
+        <activity android:name=".activity.PersIntrActivity" />
         <activity android:name=".activity.InteresseActivity" />
         <activity android:name=".activity.PersIntrDetailActivity"/>
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

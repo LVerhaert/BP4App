@@ -40,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
         final Verzamelingen verzamelingen = new Verzamelingen();
 
         setContentView(R.layout.activity_main);
-        final TextView textView = findViewById(R.id.textView);
+        final TextView textView = findViewById(R.id.tvLaden);
 
         fillModel(verzamelingen, textView);
 
-        final Button btnIntr = findViewById(R.id.btnIntr);
-        btnIntr.setOnClickListener(new View.OnClickListener() {
+        final Button btnInteresses = findViewById(R.id.btnInteresses);
+        btnInteresses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(btnIntr.getContext(), InteresseActivity.class);
+                Intent i = new Intent(btnInteresses.getContext(), InteresseActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("intr", verzamelingen.getInteresses());
                 i.putExtras(bundle);
@@ -60,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
         btnPersIntr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(btnPersIntr.getContext(), BejaardeInteresseActivity.class);
+                Intent i = new Intent(btnPersIntr.getContext(), PersIntrActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("pers", verzamelingen.getBejaarden());
+                bundle.putSerializable("verz", verzamelingen);
                 i.putExtras(bundle);
                 startActivity(i);
             }
@@ -77,8 +78,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         findInteresses(response, verzamelingen);
-                        textView.setText("Interesses geladen. Personen laden...");
-                        fillPersonen(verzamelingen, textView, queue);
+                        if (verzamelingen.getInteresses().isEmpty()) {
+                            textView.setText("Database lijkt offline");
+                        } else {
+                            textView.setText("Interesses geladen. Personen laden...");
+                            fillPersonen(verzamelingen, textView, queue);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -147,10 +152,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (strSoort.equals("vrijwilliger")) {
                     vrijwilligers.add(new Vrijwilliger(strNaam, boolKoffie));
-                } else  if (strSoort.equals("bejaarde")) {
-                    bejaarden.add(new Bejaarde(strNaam, boolKoffie));
                 } else {
-                    System.out.println(strNaam + " is geen vrijwilliger of bejaarde..");
+                    bejaarden.add(new Bejaarde(strNaam, boolKoffie));
                 }
             }
             verzamelingen.setVrijwilligers(vrijwilligers);

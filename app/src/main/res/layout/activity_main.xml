@@ -4,38 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".activity.InteresseActivity">
 
     <Button
-        android:id="@+id/btnIntr"
+        android:id="@+id/btnInteresses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Interesses"/>
 
     <Button
-        android:id="@+id/btnVrw"
+        android:id="@+id/btnVrijwilligers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnIntr"
+        app:layout_constraintTop_toBottomOf="@+id/btnInteresses"
         android:text="Vrijwilligers"/>
 
     <Button
-        android:id="@+id/btnBej"
+        android:id="@+id/btnBejaarden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnVrw"
+        app:layout_constraintTop_toBottomOf="@+id/btnVrijwilligers"
         android:text="Bejaarden"/>
 
     <Button
         android:id="@+id/btnPersIntr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnBej"
+        app:layout_constraintTop_toBottomOf="@+id/btnBejaarden"
         android:text="Interesses per persoon"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvLaden"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

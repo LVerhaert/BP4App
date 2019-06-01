@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class Persoon implements Serializable {
-    protected String naam;
-    protected boolean koffie;
-    protected ArrayList<Interesse> interesses;
+    String naam;
+    boolean koffie;
+    ArrayList<Interesse> interesses;
 
-    protected Persoon(String naam, boolean koffie) {
+    Persoon(String naam, boolean koffie) {
         this.naam = naam;
         this.koffie = koffie;
         interesses = new ArrayList<>();
@@ -36,6 +36,17 @@ public abstract class Persoon implements Serializable {
 
     public void setInteresses(ArrayList<Interesse> interesses) {
         this.interesses = interesses;
+    }
+
+    public String interessesToString() {
+        String lijst = "";
+        if (!interesses.isEmpty()) {
+            lijst = lijst.concat(interesses.get(0).getOnderwerp());
+            for (int i = 1; i < interesses.size(); i++) {
+                lijst = lijst.concat(", " + interesses.get(i).getOnderwerp());
+            }
+        }
+        return lijst;
     }
 
     public void addInteresse(Interesse interesse) {

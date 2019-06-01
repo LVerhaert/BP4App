@@ -3,7 +3,7 @@ package com.lizav.bp4app.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Verzamelingen {
+public class Verzamelingen implements Serializable {
     private ArrayList<Interesse> interesses;
     private ArrayList<Bejaarde> bejaarden;
     private ArrayList<Vrijwilliger> vrijwilligers;
