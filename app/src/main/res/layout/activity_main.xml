@@ -5,45 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".activity.InteresseActivity">
+    tools:context=".activity.InteressesActivity">
 
     <Button
         android:id="@+id/btnInteresses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Interesses"/>
+        android:text="@string/btn_interesses"/>
 
     <Button
         android:id="@+id/btnVrijwilligers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/btnInteresses"
-        android:text="Vrijwilligers"/>
+        android:text="@string/btn_vrijwilligers"/>
 
     <Button
         android:id="@+id/btnBejaarden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/btnVrijwilligers"
-        android:text="Bejaarden"/>
+        android:text="@string/btn_bejaarden"/>
 
     <Button
-        android:id="@+id/btnPersIntr"
+        android:id="@+id/btnBejIntr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/btnBejaarden"
-        android:text="Interesses per persoon"/>
+        android:text="@string/btn_bejintr"/>
+
+    <Button
+        android:id="@+id/btnVrwIntr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnBejIntr"
+        android:text="@string/btn_vrwintr"/>
 
     <TextView
         android:id="@+id/tvLaden"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Laden..."
-        app:layout_constraintTop_toBottomOf="@+id/btnPersIntr"
+        android:text="@string/laden1"
+        app:layout_constraintTop_toBottomOf="@+id/btnVrwIntr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

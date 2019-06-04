@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         btnInteresses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(btnInteresses.getContext(), InteresseActivity.class);
+                Intent i = new Intent(btnInteresses.getContext(), InteressesActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("intr", verzamelingen.getInteresses());
                 i.putExtras(bundle);
@@ -56,11 +56,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button btnPersIntr = findViewById(R.id.btnPersIntr);
-        btnPersIntr.setOnClickListener(new View.OnClickListener() {
+        final Button btnBej = findViewById(R.id.btnBejaarden);
+        btnBej.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(btnPersIntr.getContext(), PersIntrActivity.class);
+                Intent i = new Intent(btnBej.getContext(), PersonenActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pers", verzamelingen.getBejaarden());
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        final Button btnVrw = findViewById(R.id.btnVrijwilligers);
+        btnVrw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(btnVrw.getContext(), PersonenActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pers", verzamelingen.getVrijwilligers());
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
+        final Button btnBejIntr = findViewById(R.id.btnBejIntr);
+        btnBejIntr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(btnBejIntr.getContext(), PersIntrActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("pers", verzamelingen.getBejaarden());
                 bundle.putSerializable("verz", verzamelingen);
@@ -68,6 +92,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        final Button btnVrwIntr = findViewById(R.id.btnVrwIntr);
+        btnVrwIntr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(btnVrwIntr.getContext(), PersIntrActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pers", verzamelingen.getVrijwilligers());
+                bundle.putSerializable("verz", verzamelingen);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void fillModel(final Verzamelingen verzamelingen, final TextView textView) {
@@ -79,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         findInteresses(response, verzamelingen);
                         if (verzamelingen.getInteresses().isEmpty()) {
-                            textView.setText("Database lijkt offline");
+                            textView.setText(getString(R.string.laden_fout));
                         } else {
-                            textView.setText("Interesses geladen. Personen laden...");
+                            textView.setText(getString(R.string.laden2));
                             fillPersonen(verzamelingen, textView, queue);
                         }
                     }
@@ -119,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         findPersonen(response, verzamelingen);
-                        textView.setText("Personen geladen. PersIntr laden...");
+                        textView.setText(getString(R.string.laden3));
                         fillPersonenInteresses(verzamelingen, textView, queue);
                     }
                 }, new Response.ErrorListener() {
@@ -170,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         fillPersonenInteresses(response, verzamelingen);
-                        textView.setText("Laden voltooid.");
+                        textView.setText("");
                     }
                 }, new Response.ErrorListener() {
             @Override

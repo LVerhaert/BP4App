@@ -10,7 +10,7 @@ import com.lizav.bp4app.model.Interesse;
 
 import java.util.ArrayList;
 
-public class InteresseActivity extends AppCompatActivity {
+public class InteressesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class InteresseActivity extends AppCompatActivity {
             strIntr.add(intr.getOnderwerp());
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strIntr);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listview_item_single, strIntr);
         ListView lv = findViewById(R.id.lvInteresses);
         lv.setAdapter(adapter);
     }

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Gespreksapp</string>
+    <string name="btn_interesses">Interesses</string>
+    <string name="btn_bejaarden">Bejaarden</string>
+    <string name="btn_vrijwilligers">Vrijwilligers</string>
+    <string name="btn_bejintr">Interesses per bejaarde</string>
+    <string name="btn_vrwintr">Interesses per vrijwilliger</string>
+    <string name="laden1">Laden&#8230;</string>
+    <string name="laden2">Interesses geladen. Personen laden&#8230;</string>
+    <string name="laden3">Personen geladen. PersIntr laden&#8230;</string>
+    <string name="laden_fout">Database lijkt offline</string>
+    <string name="details_naam">Naam: </string>
+    <string name="details_koffiethee">Koffie of thee: </string>
+    <string name="details_interesses">Interesse(s): </string>
 </resources>

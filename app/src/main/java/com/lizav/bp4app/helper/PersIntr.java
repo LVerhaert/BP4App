@@ -5,12 +5,12 @@ import com.lizav.bp4app.model.Persoon;
 
 import java.io.Serializable;
 
-public class PersIntrTable implements Serializable {
+public class PersIntr implements Serializable {
     private String naam;
     private String koffieOfThee;
     private String interesse;
 
-    public PersIntrTable(Persoon persoon, Interesse interesse) {
+    public PersIntr(Persoon persoon, Interesse interesse) {
         this.naam = persoon.getNaam();
         this.koffieOfThee = persoon.isKoffie() ? "koffie" : "thee";
         this.interesse = interesse.getOnderwerp();

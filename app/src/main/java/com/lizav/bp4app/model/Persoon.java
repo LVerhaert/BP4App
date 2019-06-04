@@ -26,6 +26,10 @@ public abstract class Persoon implements Serializable {
         return koffie;
     }
 
+    public String koffieTheeToString() {
+        return (koffie ? "koffie" : "thee");
+    }
+
     public void setKoffie(boolean koffie) {
         this.koffie = koffie;
     }

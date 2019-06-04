@@ -11,22 +11,22 @@ import com.lizav.bp4app.R;
 
 import java.util.ArrayList;
 
-public class PersIntrAdapter extends ArrayAdapter<PersIntr> {
+public class PersAdapter extends ArrayAdapter<Pers> {
 
-    public PersIntrAdapter(Context context, ArrayList<PersIntr> persIntrs) {
-        super(context, R.layout.listview_item_double, persIntrs);
+    public PersAdapter(Context context, ArrayList<Pers> pers) {
+        super(context, R.layout.listview_item_double, pers);
     }
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        PersIntr pi = this.getItem(position);
+        Pers p = this.getItem(position);
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.listview_item_double, parent, false);
         }
         TextView naam = (TextView) view.findViewById(R.id.itemLeft);
-        TextView interesse = (TextView) view.findViewById(R.id.itemRight);
-        naam.setText(pi.getNaam());
-        interesse.setText(pi.getInteresse());
+        TextView koffieOfThee = (TextView) view.findViewById(R.id.itemRight);
+        naam.setText(p.getNaam());
+        koffieOfThee.setText(p.getKoffieOfThee());
         return view;
     }
 
