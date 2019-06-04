@@ -9,7 +9,7 @@
     <string name="laden2">Interesses geladen. Personen laden&#8230;</string>
     <string name="laden3">Personen geladen. PersIntr laden&#8230;</string>
     <string name="laden_fout">Database lijkt offline</string>
-    <string name="details_naam">Naam: </string>
-    <string name="details_koffiethee">Koffie of thee: </string>
-    <string name="details_interesses">Interesse(s): </string>
+    <string name="details_naam">Naam:\u0020</string>
+    <string name="details_koffiethee">Koffie of thee:\u0020</string>
+    <string name="details_interesses">Interesse(s):\u0020</string>
 </resources>
